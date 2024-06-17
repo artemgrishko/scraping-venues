@@ -6,19 +6,14 @@ from openpyxl.styles import Alignment, Font
 from copy import copy
 
 
-def merge_json_to_excel(file1, file2, file3, output_excel):
+def merge_json_to_excel(file1, output_excel):
     if not os.path.exists(file1):
         raise FileNotFoundError(f"File {file1} does not exist")
-    if not os.path.exists(file2):
-        raise FileNotFoundError(f"File {file2} does not exist")
-    if not os.path.exists(file3):
-        raise FileNotFoundError(f"File {file3} does not exist")
+
 
     df1 = pd.read_json(file1)
-    df2 = pd.read_json(file2)
-    df3 = pd.read_json(file3)
 
-    combined_df = pd.concat([df1, df2, df3], ignore_index=True)
+    combined_df = pd.concat([df1], ignore_index=True)
 
     with pd.ExcelWriter(output_excel, engine='openpyxl') as writer:
         combined_df.to_excel(writer, index=False)
@@ -50,3 +45,5 @@ def merge_json_to_excel(file1, file2, file3, output_excel):
             font.bold = True
             font.size = 12
             cell.font = font
+
+
