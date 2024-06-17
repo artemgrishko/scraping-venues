@@ -50,11 +50,3 @@ def merge_json_to_excel(file1, file2, file3, output_excel):
             font.bold = True
             font.size = 12
             cell.font = font
-
-
-# merge_json_to_excel(
-#     'theknot.json',
-#     'wed.json',
-#     'zola.json',
-#     'result.xlsx'
-# )
